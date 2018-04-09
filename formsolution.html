@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <title>Form Solution</title>
+</head>
+<body>
+    <h1>Register</h1>
+    <form>
+        <label for="firstName">First Name:</label>
+        <input name="firstName" type="text" placeholder="John" required="required">
+        <label for="lastName">Last Name:</label>
+        <input name="lastName" type="text" placeholder="Smith" required="required">
+        <label for="male">Male</label>
+        <input name="gender" id="male" value="male" type="radio">
+        <label for="female">Female</label>
+        <input name="gender" id="female" value="female" type="radio">
+        <label for="other">Other</label>
+        <input name="gender" id="other" value="other" type="radio">
+        <label for="email">Email:</label>
+        <input name="email" type="email" required="required">
+        <label for="passowrd">Password:</label>
+        <input name="password" type="password" minlength="6" maxlength="8">
+        <label for="brithday">Brithday:</label>
+        <input name="brithday" type="date" min=" 2017-04-01">
+        <label for="accept">I agree to the terms and conditions</label>
+        <input name="accept" type="checkbox" require="require">
+        <input type="submit">
+    </form>
+</body>
+</html>
