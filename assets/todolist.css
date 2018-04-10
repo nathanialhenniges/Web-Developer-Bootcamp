@@ -1,0 +1,10 @@
+li {
+    border: 2px solid purple;
+}
+
+#standout {
+    background-color: yellow;
+}
+.done {
+    text-decoration: line-through;
+}

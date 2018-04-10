@@ -1,11 +1,22 @@
 h1 {
-    color: red;
+    color: #ff0000;
+    /* border-color: purple;
+    border-width: 5px;
+    border-style: solid; */
+    border: 2px solid purple;
 }
 
 li {
-    color: green;
+    color: #009c00;
 }
 
 h4 {
-    color: purple;
+    background: blue;
+    color: #6900a7;
+}
+
+body {
+    background: url(image1.png);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
