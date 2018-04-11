@@ -34,7 +34,7 @@ p {
 /*Make all inputs have a 3px red border*/
 
 input {
-    border: 2px solid red;
+    border: 3px solid red;
 }
 
 /* Give everything with the class 'hello' a white background*/
@@ -46,7 +46,7 @@ input {
 /* Give the element with id 'special' a 2px solid blue border(pick your own rgb blue)*/
 
 #special {
-    border: 2px solid #6176ff;
+    border: 2px solid rgb(97, 118, 255)
 }
 
 /*Make all the <p>'s that are nested inside of divs 25px font(font-size: 25px)*/
