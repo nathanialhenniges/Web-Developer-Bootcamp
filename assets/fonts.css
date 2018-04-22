@@ -3,16 +3,16 @@ body {
 }
 
 p {
-    font-family: Arial;
+    font-family: Raleway;
     font-size: 40px;
-    font-weight: bold;
+    font-weight: normal;
     line-height: 1.5;
     text-align: center;
     text-decoration: underline
 }
 
 h1 {
-    font-family: Georgia;
+    font-family: Indie Flower;
     font-size: 200px;
     text-align: center;
     text-decoration: line-through;
