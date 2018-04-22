@@ -1,17 +1,23 @@
 body {
     font-size: 10px;
 }
+
 p {
     font-family: Arial;
     font-size: 40px;
     font-weight: bold;
     line-height: 1.5;
-} 
+    text-align: center;
+    text-decoration: underline
+}
+
 h1 {
     font-family: Georgia;
     font-size: 200px;
     text-align: center;
+    text-decoration: line-through;
 }
+
 span {
     font-size: 2em;
 }
