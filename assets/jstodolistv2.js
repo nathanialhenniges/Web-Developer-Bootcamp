@@ -22,6 +22,7 @@ function listTodos() {
 function addTodo() {
     var newTodo = prompt("Enter new todo.");
     todos.push(newTodo);
+    console.log(newTodo + " has been removed!")
 }
 
 function removeTodo() {
