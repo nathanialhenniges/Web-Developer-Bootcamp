@@ -1,13 +1,28 @@
 body {
     background-color: #232323;
+    margin: 0;
+    font-family: "Monterrat", "Avenir";
 }
 
 h1 {
     color: #ffffff;
+    text-align: center;
+    background: #4682b4;
+    margin: 0;
+    font-weight: normal;
+    text-transform: uppercase;
+    line-height: 1.1;
+    padding: 20px 0;
 }
 
 #container {
+    margin: 20px auto;
     max-width: 600px;
+}
+
+#colorDisplay {
+    display: block;
+    font-size: 200%
 }
 
 .square {
@@ -16,6 +31,10 @@ h1 {
     padding-bottom: 30%;
     float: left;
     margin: 1.66%;
+    border-radius: 15%;
+    transition: background 600ms;
+    -webkit-transition: background 600ms;
+    -moz-transition: background 600ms;
 }
 
 #stripe {
@@ -24,6 +43,33 @@ h1 {
     text-align: center;
     color: #000000;
 }
+
 .selected {
-    background: blue;
+    color: #ffffff;
+    background: #4682b4;
+}
+
+button {
+    border: none;
+    background-color: transparent;
+    text-transform: uppercase;
+    height: 100%;
+    font-weight: 700;
+    color: #4682b4;
+    letter-spacing: 1px;
+    font-size: inherit;
+}
+
+button:hover {
+    color: #ffffff;
+    background-color: #4682b4;
+    transition: all 300ms;
+    -webkit-transition: all 300ms;
+    -moz-transition: all 300ms;
+}
+
+#message {
+    display: inline-block;
+    width: 10%;
+    font-family: inherit
 }
