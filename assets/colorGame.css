@@ -58,6 +58,7 @@ button {
     color: #4682b4;
     letter-spacing: 1px;
     font-size: inherit;
+    outline: none;
 }
 
 button:hover {
