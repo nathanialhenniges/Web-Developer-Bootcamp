@@ -14,6 +14,9 @@ $("input[type='text'").keypress(function (e) {
         var todoText = $(this).val()
         var todoTextFixed = todoText.replace(/(<([^>]+)>)/ig, "");
         $(this).val(" ");
-        $("ul").append("<li><span>X</span> " + todoTextFixed + "</li>")
+        $("ul").append("<li><span><i class=`far fa-trash-alt`></i></span> " + todoTextFixed + "</li>")
     }
+})
+$("h1 .fa-plus").click(function(){
+    $("input[type='text"). fadeToggle();
 })
