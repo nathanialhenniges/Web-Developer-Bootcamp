@@ -14,6 +14,6 @@ $("input[type='text'").keypress(function (e) {
         var todoText = $(this).val()
         var todoTextFixed = todoText.replace(/(<([^>]+)>)/ig, "");
         $(this).val(" ");
-        $("ul").append("<li>" + "<span>X</span>" + todoTextFixed + "</li>")
+        $("ul").append("<li><span>X</span> " + todoTextFixed + "</li>")
     }
 })
