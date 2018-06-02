@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Paper JS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/paper.js/0.11.5/paper-full.min.js"></script>
+    <style>
+        body,
+        html {
+            width: 100%;
+            margin: 0;
+        }
+
+        canvas {
+            width: 100%;
+            background: black
+        }
+    </style>
+    <script type="text/paperscript" canvas="myCanvas">
+        for (var = x; x < 1000; x += 1000) {
+            var circle = new Path.Circle(new Point(x, 0), 10);
+            circle.fillColor = "purple";
+        }
+    </script>
+</head>
+
+<body>
+    <canvas id="myCanvas" resize></canvas>
+
+</body>
