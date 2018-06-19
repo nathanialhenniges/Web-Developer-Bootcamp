@@ -27,6 +27,15 @@ app.get("/speak/:animal", function (req, res) {
 
     }
 })
+app.get("/repeat/:message/:times" , function(req, res) {
+    var message = req.params.message;
+    var times = req.params.times;
+    var result = "";
+    for(var i = 0; i < times; i++) {
+        result += message + " ";
+    }
+    res.send(result)
+})
 app.get("*", function(req, res) {
     res.send("Sorry page not found...  What are you doing with you life.")
 })
