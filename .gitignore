@@ -4,3 +4,4 @@ npm-debug.log*
 package-lock.json
 nodejs\DemoApp\node_modules
 nodejs\FakerNPM\node_modules
+nodejs\TestExpressApp\node_modules
