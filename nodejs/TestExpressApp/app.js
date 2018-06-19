@@ -15,6 +15,9 @@ app.get("/bye", function (req, res){
 app.get("/dog", function (req, res) {
     res.send("Meow!")
 })
+app.get("*", function(req, res) {
+    res.send("You are a star!")
+})
 /**
  * Start server
  */
