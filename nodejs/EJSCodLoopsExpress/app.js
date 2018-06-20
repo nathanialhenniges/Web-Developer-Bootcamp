@@ -2,17 +2,23 @@
  * Setup Lib
  */
 const express = require("express");
+
+
 var app = express();
+/**
+ * Assets
+ */
+app.use(express.static('public'))
+app.set("view engine", "ejs");
 /**
  * Setup routes
  */
-
 app.get("/", function (req, res) {
-    res.render("home.ejs");
+    res.render("home");
 })
 app.get("/fallinlovewith/:thing", function (req, res) {
     var thing = req.params.thing
-    res.render("love.ejs", {
+    res.render("love", {
         thingVar: thing
     })
 })
@@ -27,7 +33,7 @@ app.get("/posts", function (req, res) {
         title: "My fav owner Colt",
         author: "Rusty"
     }]
-    res.render("post.ejs", {
+    res.render("post", {
         posts: posts
     });
 })
