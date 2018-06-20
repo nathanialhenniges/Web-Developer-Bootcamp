@@ -3,6 +3,7 @@
  */
 const express = require('express');
 const bodyParser = require("body-parser");
+const mongoose = require("mongoose");
 /**
  * Setup Express
  */
@@ -21,7 +22,10 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: true
 }))
-
+/**
+ * Connectto Mongo database
+ */
+mongoose.connect("mongodb://localhost/yelpcamp")
 /**
  * Campgrounds array
  */
