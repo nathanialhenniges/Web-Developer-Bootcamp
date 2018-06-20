@@ -56,7 +56,7 @@ app.post("/campgrounds", function (req, res) {
         image: image
     };
     campgrounds.push(newCampground)
-    res.redirect("/campgrounds")
+    res.redirect("/campground")
 });
 app.get("/campgrounds/new", function (req, res) {
     res.render("newCampground")
