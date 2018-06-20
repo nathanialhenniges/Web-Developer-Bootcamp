@@ -2,7 +2,7 @@
  * Setup Lib
  */
 const express = require("express");
-const reqquest = require('request')
+const request = require('request')
 
 var app = express();
 /**
@@ -16,7 +16,17 @@ app.set("view engine", "ejs");
 app.get("/", function (req, res) {
     res.render("home");
 })
-
+app.get("/results", function (req, res) {
+    var searchMovie = req.query.searchMovie
+    request(`https://www.omdbapi.com/?s=${searchMovie}&apikey=1234567`, function (error, response, body) {
+        if (!error && response.statusCode == 200) {
+            var data = JSON.parse(body)
+            res.render("results", {
+                data: data
+            })
+        }
+    });
+});
 /**
  * Start server
  */
