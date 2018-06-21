@@ -1,9 +1,9 @@
 /**
  * Import Node Modules
  */
-const express = require('express');
-const bodyParser = require("body-parser");
-const mongoose = require("mongoose");
+const express = require('express'),
+    bodyParser = require("body-parser"),
+    mongoose = require("mongoose");
 /**
  * Setup Express
  */
@@ -27,20 +27,29 @@ app.use(bodyParser.urlencoded({
  */
 mongoose.connect("mongodb://localhost/yelpcamp")
 /**
- * Campgrounds array
+ * Schema Setup
  */
-var campgrounds = [{
-        name: "Salmon Creek",
-        image: "https://pixabay.com/get/e834b70c2cf5083ed1584d05fb1d4e97e07ee3d21cac104497f9c478a6e5b1ba_340.jpg"
-    },
-    {
-        name: "Catfish Party Creek",
-        image: "https://pixabay.com/get/e136b60d2af51c22d2524518b7444795ea76e5d004b014439cf5c078afe9b7_340.jpg"
-    }, {
-        name: "Cat Dog Campgrounds",
-        image: "https://pixabay.com/get/e831b20628f2003ed1584d05fb1d4e97e07ee3d21cac104497f9c478a6e5b1ba_340.jpg"
-    }
-];
+var campgroundSchema = new mongoose.Schema({
+    name: String,
+    image: String
+})
+
+var Campground = mongoose.model("Campground", campgroundSchema)
+
+/**
+ * Default 
+ */
+// Campground.create({
+//     name: "Cat Dog Campgrounds",
+//     image: "https://pixabay.com/get/e831b20628f2003ed1584d05fb1d4e97e07ee3d21cac104497f9c478a6e5b1ba_340.jpg"
+// }, function (err, campground) {
+//     if (err) {
+//         console.log(err);
+//     } else {
+//         console.log("New Campground.")
+//         console.log(campground)
+//     }
+// })
 /**
  * Setup routes
  */
@@ -48,9 +57,15 @@ app.get("/", function (req, res) {
     res.render("home");
 })
 app.get("/campgrounds", function (req, res) {
-    res.render("campgrounds", {
-        campgrounds: campgrounds
-    });
+    Campground.find({}, function (err, campgrounds) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("campgrounds", {
+                campgrounds: campgrounds
+            });
+        }
+    })
 })
 app.post("/campgrounds", function (req, res) {
     var name = req.body.name;
@@ -59,8 +74,14 @@ app.post("/campgrounds", function (req, res) {
         name: name,
         image: image
     };
-    campgrounds.push(newCampground)
-    res.redirect("/campground")
+    Campground.create(newCampground, function (err, newlyCreated) {
+        if (err) {
+            console.log(err);
+        } else {
+            console.log("Added campground");
+            res.redirect("/campgrounds");
+        }
+    })
 });
 app.get("/campgrounds/new", function (req, res) {
     res.render("newCampground")
