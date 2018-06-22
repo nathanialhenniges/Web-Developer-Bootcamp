@@ -43,10 +43,43 @@ var blogSchema = new mongoose.Schema({
  */
 var Blog = mongoose.model("Blog", blogSchema);
 /**
+ * Create Test
+ */
+// Blog.create({
+//     title: "Hello World",
+//     image: "https://pbs.twimg.com/profile_images/779017316503781377/d6rPXCnC.jpg",
+//     body: "Hello the whole world.  This is just a test"
+// })
+/**
  * Setup routes
  */
 app.get("/", function (req, res) {
+    res.redirect("/blogs")
 });
+app.get("/blogs", function (req, res) {
+    Blog.find({}, function (err, blogs) {
+        if (err) {
+            console.log(err)
+        } else {
+            res.render("index", {
+                blogs: blogs
+            })
+
+        }
+    })
+});
+app.get("/blogs/new" ,function (req,res){
+    res.render("new")
+})
+app.post("/blogs", function(req,res) {
+    Blog.create(req.body.blog,function(err,newBlog){
+        if(err){
+            res.render("new");
+        }else {
+            res.redirect("/blogs")
+        }
+    })
+})
 /**
  * Start server
  */
