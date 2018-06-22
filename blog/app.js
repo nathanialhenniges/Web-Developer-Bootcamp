@@ -27,6 +27,27 @@ app.use(bodyParser.urlencoded({
  */
 mongoose.connect("mongodb://localhost/blog")
 /**
+ * Database Schema
+ */
+var blogSchema = new mongoose.Schema({
+    title: String,
+    image: String,
+    body: String,
+    created: {
+        type: Date,
+        default: Date.now()
+    }
+})
+/**
+ * Compile Model
+ */
+var Blog = mongoose.model("Blog", blogSchema);
+/**
+ * Setup routes
+ */
+app.get("/", function (req, res) {
+});
+/**
  * Start server
  */
 app.listen("8080", function () {
