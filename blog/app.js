@@ -115,8 +115,10 @@ app.put("/blogs/:id", function (req, res) {
             res.redirect("/blogs/" + req.params.id)
         }
     });
-
 });
+app.delete("/blogs/:id", function (req, res) {
+     
+})
 /**
  * Start server
  */
