@@ -4,7 +4,8 @@
 const express = require('express'),
     bodyParser = require("body-parser"),
     mongoose = require("mongoose"),
-    methodOverride = require("method-override");
+    methodOverride = require("method-override"),
+    expressSanitizer = require("express-sanitizer");
 /**
  * Setup Express
  */
@@ -23,6 +24,10 @@ app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({
     extended: true
 }))
+/**
+ * Express Satitizer
+ */
+app.use(expressSanitizer())
 /**
  * Setup method override
  */
@@ -73,7 +78,11 @@ app.get("/blogs", function (req, res) {
         }
     });
 });
+
 app.post("/blogs", function (req, res) {
+    req.body.blog.body = req.sanitize(req.body.blog.body)
+    req.body.blog.title = req.sanitize(req.body.blog.title)
+    console.log(req.body)
     Blog.create(req.body.blog, function (err, newBlog) {
         if (err) {
             res.render("new");
@@ -108,6 +117,8 @@ app.get("/blogs/:id/edit", function (req, res) {
     });
 });
 app.put("/blogs/:id", function (req, res) {
+    req.body.blog.body = req.sanitize(req.body.blog.body)
+    req.body.blog.title = req.sanitize(req.body.blog.title)
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, function (error, updatedBlog) {
         if (error) {
             res.redirect("/blogs");
