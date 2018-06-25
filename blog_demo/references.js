@@ -43,10 +43,10 @@ var User = mongoose.model("User", userSchema);
 //             }
 //         })
 //     })
-User.findOne({email: "mrdemonwolf@outlook.com"}).populate("posts").exec(function (err, user) {
+User.findOne({email: "mrdemonwolf@outlook.com"}).exec(function (err, user) {
 if(err) {
     console.log(err)
 }else {
-    console.log(user.email)
+    console.log(user.name)
 }
 })
