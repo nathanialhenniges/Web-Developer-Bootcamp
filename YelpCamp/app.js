@@ -2,8 +2,8 @@
  * Import Node Modules
  */
 const express = require('express'),
-    bodyParser = require("body-parser"),
-    mongoose = require("mongoose");
+    bodyParser = require('body-parser'),
+    mongoose = require('mongoose');
 /**
  * Setup Express
  */
@@ -27,16 +27,14 @@ app.use(bodyParser.urlencoded({
  */
 mongoose.connect("mongodb://localhost/yelpcamp")
 /**
+ * Seed Database
+ */
+var seedDB = require("./seeds")
+seedDB();
+/**
  * Schema Setup
  */
-var campgroundSchema = new mongoose.Schema({
-    name: String,
-    image: String,
-    description: String
-})
-
-var Campground = mongoose.model("Campground", campgroundSchema)
-
+var Campground = require("./models/campground")
 /**
  * Default 
  */
