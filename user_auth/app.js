@@ -2,15 +2,13 @@
  * Import Node Modules
  */
 const express = require('express'),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
-
+    mongoose = require('mongoose'),
+    bodyParser = require('body-parser');
 
 /**
  * Setup Express
  */
 const app = express();
-
 /**
  * Set global Viewnode 
  */
