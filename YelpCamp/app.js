@@ -56,12 +56,15 @@ var Campground = require("./models/campground")
 app.get("/", function (req, res) {
     res.render("home");
 });
+/**
+ * Campground Routes
+ */
 app.get("/campgrounds", function (req, res) {
     Campground.find({}, function (err, campgrounds) {
         if (err) {
             console.log(err)
         } else {
-            res.render("campgrounds", {
+            res.render("campgrounds/index", {
                 campgrounds: campgrounds
             });
         }
@@ -86,19 +89,37 @@ app.post("/campgrounds", function (req, res) {
     })
 });
 app.get("/campgrounds/new", function (req, res) {
-    res.render("newCampground");
+    res.render("campgrounds/new");
 });
 app.get("/campgrounds/:id", function (req, res) {
-    Campground.findById(req.params.id, function (err, foundCampground) {
+    Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
         if (err) {
             console.log(err)
         } else {
-            res.render("showCampground", {
+            res.render("campgrounds/show", {
                 campground: foundCampground
             });
         }
     });
 });
+app.post("/campgrounds/:id/comments", function (req, res) {
+
+})
+/**
+ * Comments Routes
+ */
+app.get("/campgrounds/:id/comments/new", function (req, res) {
+    Campground.findById(req.params.id, function (err, campground) {
+        if (err) {
+            console.log(err)
+        } else {
+
+            res.render("comments/new", {
+                campground: campground
+            })
+        }
+    })
+})
 /**
  * Start server
  */
