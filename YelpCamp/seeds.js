@@ -34,9 +34,8 @@ function seedDB() {
     Campground.remove({}, function (err) {
         if (err) {
             console.log(err)
-        } else {
-            console.log("Removed campgrounds.")
         }
+        console.log("Removed campgrounds.")
         /**
          * Add default campgrounds
          */
@@ -50,15 +49,15 @@ function seedDB() {
                      * Add comments to each campground
                      */
                     Comment.create({
-                        text: "This place needs wifi!",
-                        author: "You"
+                        text: "This place is great, but I wish there was internet",
+                        author: "Homer"
                     }, function (err, comment) {
                         if (err) {
                             console.log(err);
                         } else {
                             campground.comments.push(comment);
-                            comment.save();
-                            console.log(comment);
+                            campground.save();
+                            console.log("Created a new comment!");
                         }
                     })
                 }
