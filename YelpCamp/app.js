@@ -3,7 +3,13 @@
  */
 const express = require('express'),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    passport = require("passport"),
+    LocalStrategy = require("passport-local"),
+    Campground = require("./models/campground"),
+    Comment = require("./models/comment"),
+    User = require("./models/user"),
+    seedDB = require(". /seeds");
 /**
  * Setup Express
  */
@@ -11,8 +17,7 @@ const app = express();
 /**
  * Assets
  */
-app.use(express.static(__dirname + "/public"));
-console.log(__dirname)
+app.use(express.static(__dirname + "/public"));;
 /**
  * Set global Viewnode 
  */
@@ -22,36 +27,34 @@ app.set("view engine", "ejs");
  */
 app.use(bodyParser.urlencoded({
     extended: true
-}))
+}));
 /**
  * Connectto Mongo database
  */
-mongoose.connect("mongodb://localhost/yelpcamp")
+mongoose.connect("mongodb://localhost/yelpcamp");
 /**
  * Seed Database
  */
-var seedDB = require("./seeds")
 seedDB();
 /**
- * Schema Setup
+ * Passport Config
  */
-var Campground = require("./models/campground")
-var Comment = require("./models/comment")
+app.use(require("express-session")({
+    secret: "Once again Kappa FTW",
+    resave: false,
+    saveUninitialized: false
+}));
 /**
- * Default 
+ * Setup express to use passport
  */
-// Campground.create({
-//     name: "Cat Dog Campgrounds",
-//     image: "https://pixabay.com/get/ea31b10929f7063ed1584d05fb1d4e97e07ee3d21cac104497f9c77ea6e8b5ba_340.jpg",
-//     description: "This is just another campground but with cat dog themed areas."
-// }, function (err, campground) {
-//     if (err) {
-//         console.log(err);
-//     } else {
-//         console.log("New Campground.")
-//         console.log(campground)
-//     }
-// })
+app.use(passport.initialize());
+app.use(passport.session());
+/**
+ * Passport Stuff
+ */
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 /**
  * Setup routes
  */
