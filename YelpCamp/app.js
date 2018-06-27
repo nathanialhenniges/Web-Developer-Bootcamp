@@ -152,13 +152,23 @@ app.post("/register", function (req, res) {
     User.register(newUser, req.body.password, function (err, user) {
         if (err) {
             console.log(err);
-            return res.render("register");
+            return res.render("auth/register");
         }
         passport.authenticate("local")(req, res, function () {
             res.redirect("/campgrounds");
         });
     });
 });
+app.get("/login", function (req, res) {
+    res.render("auth/login");
+})
+app.post("/login", passport.authenticate("local", {
+    successRedirect: "/campgrounds",
+    failureRedirect: "/login"
+}), function (req, res) {})
+/**
+ * Login Routes
+ */
 /**
  * Start server
  */
