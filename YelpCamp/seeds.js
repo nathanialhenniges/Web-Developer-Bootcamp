@@ -37,33 +37,42 @@ function seedDB() {
         }
         console.log("Removed campgrounds.")
         /**
-         * Add default campgrounds
+         * Remove Comments
          */
-        campgroundData.forEach(function (seed) {
-            Campground.create(seed, function (err, campground) {
-                if (err) {
-                    console.log(err)
-                } else {
-                    console.log(`Added ${seed.name} campground.`)
-                    /**
-                     * Add comments to each campground
-                     */
-                    Comment.create({
-                        text: "This place is great, but I wish there was internet",
-                        author: "Homer"
-                    }, function (err, comment) {
-                        if (err) {
-                            console.log(err);
-                        } else {
-                            campground.comments.push(comment);
-                            campground.save();
-                            console.log("Created a new comment!");
-                        }
-                    })
-                }
+        Comment.remove({}, function (err) {
+            if (err) {
+                console.log(err)
+            }
+            console.log("Removed comments.")
+            /**
+             * Add default campgrounds
+             */
+            campgroundData.forEach(function (seed) {
+                Campground.create(seed, function (err, campground) {
+                    if (err) {
+                        console.log(err)
+                    } else {
+                        console.log(`Added ${seed.name} campground.`)
+                        /**
+                         * Add comments to each campground
+                         */
+                        Comment.create({
+                            text: "This place is great, but I wish there was internet",
+                            author: "Homer"
+                        }, function (err, comment) {
+                            if (err) {
+                                console.log(err);
+                            } else {
+                                campground.comments.push(comment);
+                                campground.save();
+                                console.log("Created a new comment!");
+                            }
+                        })
+                    }
+                })
             })
-        })
-    });
+        });
+    })
 }
 /**
  * Export Data
