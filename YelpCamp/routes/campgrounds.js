@@ -7,7 +7,7 @@ var express = require("express"),
 /**
  * Campground Routes
  */
-router.get("/campgrounds", function (req, res) {
+router.get("/", function (req, res) {
     Campground.find({}, function (err, campgrounds) {
         if (err) {
             console.log(err)
@@ -18,7 +18,7 @@ router.get("/campgrounds", function (req, res) {
         }
     })
 });
-router.post("/campgrounds", function (req, res) {
+router.post("/", function (req, res) {
     var name = req.body.name;
     var image = req.body.image;
     var description = req.body.description
@@ -36,10 +36,10 @@ router.post("/campgrounds", function (req, res) {
         }
     })
 });
-router.get("/campgrounds/new", function (req, res) {
+router.get("/new", function (req, res) {
     res.render("campgrounds/new");
 });
-router.get("/campgrounds/:id", function (req, res) {
+router.get("/:id", function (req, res) {
     Campground.findById(req.params.id).populate("comments").exec(function (err, foundCampground) {
         if (err) {
             console.log(err)

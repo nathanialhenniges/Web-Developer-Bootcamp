@@ -2,13 +2,15 @@
  * Import Node Modules and setup express router
  */
 var express = require("express"),
-    router = express.Router(),
+    router = express.Router({
+        mergeParams: true
+    }),
     Campground = require("../models/campground"),
     Comment = require("../models/comment");
 /**
  * Comments Routes
  */
-router.get("/campgrounds/:id/comments/new", isLoggedIn, function (req, res) {
+router.get("/new", isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err)
@@ -19,7 +21,7 @@ router.get("/campgrounds/:id/comments/new", isLoggedIn, function (req, res) {
         }
     })
 });
-router.post("/campgrounds/:id/comments", isLoggedIn, function (req, res) {
+router.post("/", isLoggedIn, function (req, res) {
     Campground.findById(req.params.id, function (err, campground) {
         if (err) {
             console.log(err);

@@ -6,8 +6,6 @@ const express = require('express'),
     mongoose = require('mongoose'),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
-    Campground = require("./models/campground"),
-    Comment = require("./models/comment"),
     User = require("./models/user"),
     seedDB = require("./seeds");
 /**
@@ -72,9 +70,9 @@ app.use(function (req, res, next) {
 /**
  * Express use routes
  */
-app.use(indexRoutes);
-app.use(commentRoutes);
-app.use(campgroundRoutes);
+app.use("/",indexRoutes);
+app.use("/campgrounds/:id/comments",commentRoutes);
+app.use("/campgrounds",campgroundRoutes);
 /**
  * Start server
  */
