@@ -40,7 +40,7 @@ mongoose.connect("mongodb://localhost/yelpcamp");
 /**
  * Seed Database
  */
-seedDB();
+// seedDB();
 /**
  * Passport Config
  */
