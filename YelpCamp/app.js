@@ -4,6 +4,7 @@
 const express = require('express'),
     bodyParser = require('body-parser'),
     mongoose = require('mongoose'),
+    flash = require("connect-flash"),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
     methodOverride = require("method-override"),
@@ -60,6 +61,11 @@ app.use(passport.session());
  */
 app.use(methodOverride("_method"));
 /**
+ * Setup Flash
+ */
+app.use(flash())
+
+/**
  * Passport Stuff
  */
 passport.use(new LocalStrategy(User.authenticate()));
@@ -70,14 +76,16 @@ passport.deserializeUser(User.deserializeUser());
  */
 app.use(function (req, res, next) {
     res.locals.currentUser = req.user;
+    res.locals.error = req.flash("error");
+    res.locals.success = req.flash("success");
     next();
-})
+});
 /**
  * Express use routes
  */
-app.use("/",indexRoutes);
-app.use("/campgrounds/:id/comments",commentRoutes);
-app.use("/campgrounds",campgroundRoutes);
+app.use("/", indexRoutes);
+app.use("/campgrounds/:id/comments", commentRoutes);
+app.use("/campgrounds", campgroundRoutes);
 /**
  * Start server
  */
