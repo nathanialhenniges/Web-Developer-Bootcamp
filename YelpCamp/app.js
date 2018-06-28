@@ -6,6 +6,7 @@ const express = require('express'),
     mongoose = require('mongoose'),
     passport = require("passport"),
     LocalStrategy = require("passport-local"),
+    methodOverride = require("method-override"),
     User = require("./models/user"),
     seedDB = require("./seeds");
 /**
@@ -54,6 +55,10 @@ app.use(require("express-session")({
  */
 app.use(passport.initialize());
 app.use(passport.session());
+/**
+ * Setup Method Override
+ */
+app.use(methodOverride("_method"));
 /**
  * Passport Stuff
  */
