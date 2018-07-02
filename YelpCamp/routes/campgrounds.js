@@ -4,7 +4,8 @@
 var express = require("express"),
     router = express.Router(),
     Campground = require("../models/campground"),
-    middleware = require("../middleware/");
+    middleware = require("../middleware/"),
+    flash = require("connect-flash");
 /**
  * Campground Routes
  */
@@ -59,7 +60,7 @@ router.get("/:id", function (req, res) {
 router.get("/:id/edit", middleware.checkCampgroundOwnership, function (req, res) {
     Campground.findById(req.params.id, function (err, foundCampground) {
         if (err) {
-                    req.flash("error", "Campground not found!")
+            req.flash("error", "Campground not found!")
             res.redirect("/campground");
         } else {
             res.render("campgrounds/edit", {

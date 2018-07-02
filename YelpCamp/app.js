@@ -11,6 +11,11 @@ const express = require('express'),
     User = require("./models/user"),
     seedDB = require("./seeds");
 /**
+ * Defualt env
+ */
+var DATABASEURL = process.env.DATABASEURL || "mongodb://localhost/yelpcam";
+var PORT = process.env.PORT || 8080;
+/**
  * Import routes
  */
 var campgroundRoutes = require("./routes/campgrounds"),
@@ -38,7 +43,8 @@ app.use(bodyParser.urlencoded({
 /**
  * Connectto Mongo database
  */
-mongoose.connect("mongodb://localhost/yelpcamp");
+mongoose.connect(DATABASEURL);
+// mongoose.connect("mongodb://app:0W713yMm82eV8lAj@ds018248.mlab.com:18248/yelpcamp");
 /**
  * Seed Database
  */
@@ -89,7 +95,9 @@ app.use("/campgrounds", campgroundRoutes);
 /**
  * Start server
  */
-app.listen("8080", function () {
+app.listen(PORT, function () {
     console.log("Server has started!");
 });
-console.log("Go to http://localhost:8080 to see running app.");
+// app.listen(8080, function () {
+//     console.log("Server has started!");
+// });
